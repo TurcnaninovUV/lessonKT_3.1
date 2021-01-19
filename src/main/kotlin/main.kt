@@ -1,5 +1,5 @@
 fun main() {
-    val time = 8000
+    val time = 86300
     agoToText2(time)?.let { agoToText(time, it) }
 }
 
@@ -8,7 +8,7 @@ fun agoToText(time: Int, timeName: String) =
         (time in 0..60) -> println("был(а) только что")
         (time in 61..(60 * 60)) -> println("был(а) в сети ${time / 60} $timeName назад")
         (time in (60 * 60 + 1)..(24 * 60 * 60)) -> println("был(а) в сети ${time / 3600} $timeName назад")
-        (time in (24 * 60 * 60 + 1)..((24 * 60 * 60) * 2)) -> println("был(а) в сети ${time / 86400} сегодня")
+        (time in (24 * 60 * 60 + 1)..((24 * 60 * 60) * 2)) -> println("был(а) в сети сегодня")
         (time in ((24 * 60 * 60 + 1) * 2)..((24 * 60 * 60) * 3)) -> println("был(а) в сети вчера")
         else -> println("был(а) в сети давно")
     }
