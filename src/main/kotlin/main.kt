@@ -1,6 +1,6 @@
 fun main() {
     val time = 86300
-    agoToText2(time)?.let { agoToText(time, it) }
+    transferText(time)?.let { agoToText(time, it) }
 }
 
 fun agoToText(time: Int, timeName: String) =
@@ -13,7 +13,7 @@ fun agoToText(time: Int, timeName: String) =
         else -> println("был(а) в сети давно")
     }
 
-fun agoToText2(time: Int): String? {
+fun transferText(time: Int): String? {
     var minutes = time / 60
     var timeName: String? = null
     if (minutes < 60) {
