@@ -1,9 +1,11 @@
 fun main() {
-    val time = 86300
-    transferText(time)?.let { agoToText(time, it) }
+    val time = 3601
+    agoToText(time)
 }
 
-fun agoToText(time: Int, timeName: String) =
+fun agoToText(time: Int) {
+    val timeName = if (time <= 3600) transferMinute(time)
+    else transferHours(time)
     when {
         (time in 0..60) -> println("был(а) только что")
         (time in 61..(60 * 60)) -> println("был(а) в сети ${time / 60} $timeName назад")
@@ -12,26 +14,23 @@ fun agoToText(time: Int, timeName: String) =
         (time in ((24 * 60 * 60 + 1) * 2)..((24 * 60 * 60) * 3)) -> println("был(а) в сети вчера")
         else -> println("был(а) в сети давно")
     }
-
-fun transferText(time: Int): String? {
-    var minutes = time / 60
-    var timeName: String? = null
-    if (minutes < 60) {
-        timeName = if (minutes in (5..20) || minutes in (25..30) ||
-            minutes in (35..40) || minutes in (45..50) || minutes in (55..60)
-        ) "минут"
-        else if (minutes == 1 || minutes == 21 || minutes == 31 || minutes == 41 || minutes == 51) "минуту"
-        else "минуты"
-    } else if (minutes > 60) {
-        minutes /= 60
-        timeName = when (minutes) {
-            1, 21 -> "час"
-            2, 3, 4, 22, 23, 24 -> "часа"
-            else -> "часов"
-        }
-    }
-    return timeName
 }
+
+fun transferMinute(time: Int): String? {
+    val minutes = time / 60
+    return if (minutes % 10 == 3 or 4) "минуты"
+    else if (minutes % 10 == 1 && minutes != 11) "минуту"
+    else "минут"
+}
+
+fun transferHours(time: Int): String? {
+    return when (time / 3600) {
+        1, 21 -> "час"
+        2, 3, 4, 22, 23, 24 -> "часа"
+        else -> "часов"
+    }
+}
+
 
 
 
