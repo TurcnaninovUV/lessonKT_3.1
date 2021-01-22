@@ -1,5 +1,5 @@
 fun main() {
-    val time = 3601
+    val time = 5000
     agoToText(time)
 }
 
@@ -16,14 +16,14 @@ fun agoToText(time: Int) {
     }
 }
 
-fun transferMinute(time: Int): String? {
+fun transferMinute(time: Int): String {
     val minutes = time / 60
-    return if (minutes % 10 == 3 or 4) "минуты"
+    return if (minutes % 10 == 2 || minutes in (2..4) || minutes % 10 == 3 || minutes % 10 == 4  ) "минуты"
     else if (minutes % 10 == 1 && minutes != 11) "минуту"
     else "минут"
 }
 
-fun transferHours(time: Int): String? {
+fun transferHours(time: Int): String {
     return when (time / 3600) {
         1, 21 -> "час"
         2, 3, 4, 22, 23, 24 -> "часа"
