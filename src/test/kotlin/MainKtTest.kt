@@ -99,7 +99,7 @@ class MainKtTest {
 
     @Test
     fun transferMinute_firstIfOneOption() {
-        val time = 7
+        val time = 139
         val expected = "минуты"
 
         val result = transferMinute(time)
