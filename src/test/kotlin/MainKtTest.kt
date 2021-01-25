@@ -4,6 +4,16 @@ import org.junit.Assert.*
 
 class MainKtTest {
 
+    @Test
+    fun main_test() {
+        val time = 5000
+        val expected = println("был(а) в сети 1 час назад")
+
+        val result = agoToText(time)
+
+        assertEquals(expected, result)
+    }
+
 
     @Test
     fun agoToText_timeNameIf() {
@@ -16,7 +26,7 @@ class MainKtTest {
     }
 
     @Test
-    fun agoToText_timeNameElso() {
+    fun agoToText_timeNameElse() {
         val time = 3720
         val expected = println("был(а) в сети 1 час назад")
 
@@ -69,7 +79,7 @@ class MainKtTest {
 
     @Test
     fun agoToText_whenYesterday() {
-        val time = 220000
+        val time = 60
         val expected = println("был(а) в сети вчера")
 
         val result = agoToText(time)
@@ -89,7 +99,7 @@ class MainKtTest {
 
     @Test
     fun transferMinute_firstIfOneOption() {
-        val time = 1320
+        val time = 7
         val expected = "минуты"
 
         val result = transferMinute(time)
